@@ -1,0 +1,18 @@
+.header-logo {
+  width: 90px;
+  height: auto;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: #2c2c6c;
+  font-weight: 500;
+}
+.navbar-light .navbar-nav .get-started {
+  background-color: #2c2c6c;
+  transition: 500ms;
+  color: #ffffff;
+}
+.navbar-light .navbar-nav .get-started:hover {
+  background-color: #87a2e0;
+  color: #f5f5f5;
+}

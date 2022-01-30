@@ -1,0 +1,35 @@
+.home {
+  background: linear-gradient(
+      to right,
+      rgba(8, 8, 8, 0.7),
+      rgba(66, 66, 66, 0.7)
+    ),
+    url("../../images/bg.jpg") no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 90vh;
+}
+.home h1 {
+  color: #ffffff;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-shadow: #000000;
+  margin-top: 2rem;
+  text-transform: capitalize;
+  /* font-size: rem; */
+}
+.home p {
+  margin-top: 1.5rem;
+  /* font-size: 1rem; */
+  color: #ffffff;
+  opacity: 0.65;
+}
+
+.home a {
+  background: #2c2c6c;
+  color: #ffffff;
+  border-radius: 5px;
+  padding: 0.6rem 2rem;
+  text-decoration: none;
+  margin: 2rem 0;
+}
