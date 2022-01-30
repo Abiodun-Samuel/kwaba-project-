@@ -2,7 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://kwaba-project.herokuapp.com/",
+  "proxy": "https://ecstatic-mestorf-50ad8e.netlify.app/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
