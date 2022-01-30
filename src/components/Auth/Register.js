@@ -12,12 +12,22 @@ const Register = () => {
   const registerUser = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
+      const response = await fetch(
         "https://kwaba-project.herokuapp.com/api/register",
-        { name, email, password }
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+          body: JSON.stringify({ name, email, password }),
+        }
       );
-      // console.log(response);
-      const data = await response.data;
+      // const response = await axios.post(
+      //   "https://kwaba-project.herokuapp.com/api/register",
+      //   { name, email, password }
+      // );
+      const data = await response.json();
       if (data.status === "ok") {
         navigate("/login");
       } else {
@@ -32,16 +42,6 @@ const Register = () => {
     // } else {
     //   toast.error(data.error);
     // }
-    // const response = await fetch(
-    //   "https://kwaba-project.herokuapp.com/api/register",
-    //   {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({ name, email, password }),
-    //   }
-    // );
   };
   return (
     <div className="container">

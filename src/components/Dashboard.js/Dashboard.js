@@ -7,13 +7,14 @@ import PaymentBreakdown from "./PaymentBreakdown";
 import { FormTitles } from "../constants/data";
 import "./dashboard.css";
 import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const auth = useSelector((state) => state);
   useEffect(() => {
-    var token = localStorage.getItem("token");
-    if (!token) {
-      navigate("/register");
+    if (!auth) {
+      navigate("/");
     }
   });
 
@@ -35,6 +36,7 @@ const Dashboard = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
         },
         body: JSON.stringify({ formData }),
       }

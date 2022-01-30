@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 
@@ -7,38 +8,42 @@ const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
 
   const loginUser = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
+      // const response = await axios.post(
+      //   "https://localhost:5000/api/login",
+      //   // "https://kwaba-project.herokuapp.com/api/login",
+      //   { email, password }
+      // );
+      const response = await fetch(
         "https://kwaba-project.herokuapp.com/api/login",
-        { email, password }
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+          body: JSON.stringify({ email, password }),
+        }
       );
 
-      const data = await response.data;
+      const data = await response.json();
+      // console.log(data);
       if (data.user) {
         localStorage.setItem("token", data.user);
-        toast.success("Welcome" + data.name);
+        var token = localStorage.getItem("token", data.user);
+        dispatch({ type: "LOGIN", payload: token });
         navigate("/dashboard");
       } else {
         toast.error(data.error);
-        console.log(data.error);
+        // console.log(data.error);
       }
     } catch (error) {
       console.error(error);
     }
-
-    // const response = await fetch(
-    //   "https://kwaba-project.herokuapp.com/api/login",
-    //   {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({ email, password }),
-    //   }
-    // );
   };
   return (
     <div className="container">

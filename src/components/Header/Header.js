@@ -1,15 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { Navbar, Container, Nav } from "react-bootstrap";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../images/companyLogo.png";
 import "./header.css";
 
 const Header = () => {
-  const [token, setToken] = useState(null);
-  useEffect(() => {
-    var token = localStorage.getItem("token");
-    setToken(token);
-  }, [token]);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const auth = useSelector((state) => state);
+  
+  const logout = () => {
+    localStorage.removeItem("token");
+    dispatch({ type: "LOGOUT" });
+    navigate("/");
+  };
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-white shadow">
@@ -33,10 +38,18 @@ const Header = () => {
               <Link className="nav-link" to="/">
                 Home
               </Link>
-              {token ? (
-                <Link className="nav-link btn get-started" to="/dashboard">
-                  Get started
-                </Link>
+              {auth ? (
+                <>
+                  <Link
+                    className="nav-link btn get-started my-2"
+                    to="/dashboard"
+                  >
+                    Get started
+                  </Link>
+                  <button onClick={logout} className="nav-link  btn my-2">
+                    Logout
+                  </button>
+                </>
               ) : (
                 <Link className="nav-link btn get-started" to="/register">
                   Sign Up
