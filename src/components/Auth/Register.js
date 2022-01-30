@@ -16,7 +16,7 @@ const Register = () => {
         "https://kwaba-project.herokuapp.com/api/register",
         { name, email, password }
       );
-      console.log(response);
+      // console.log(response);
       const data = await response.data;
       if (data.status === "ok") {
         navigate("/login");
