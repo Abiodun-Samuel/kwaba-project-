@@ -30,14 +30,17 @@ const Dashboard = () => {
   });
 
   const submit = async () => {
-    const response = await fetch("/api/submit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify({ formData }),
-    });
+    const response = await fetch(
+      "https://kwaba-project.herokuapp.com/api/submit",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+        body: JSON.stringify({ formData }),
+      }
+    );
     const data = await response.json();
     if (data.error) {
       toast.error(data.error);

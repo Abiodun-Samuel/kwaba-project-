@@ -12,14 +12,17 @@ const Register = () => {
   const registerUser = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("/api/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-        },
-        body: JSON.stringify({ name, email, password }),
-      });
+      const response = await fetch(
+        "https://kwaba-project.herokuapp.com/api/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+          body: JSON.stringify({ name, email, password }),
+        }
+      );
       // const response = await axios.post(
       //   "https://kwaba-project.herokuapp.com/api/register",
       //   { name, email, password }
