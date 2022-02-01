@@ -7,12 +7,12 @@ import Login from "./components/Auth/Login";
 import Dashboard from "./components/Dashboard.js/Dashboard";
 import Protected from "./components/Protected";
 import Error from "./components/Error";
-import { useState } from "react";
+import jwt_decode from "jwt-decode";
 import { useSelector } from "react-redux";
 
 function App() {
-  // const auth = useSelector((state) => state);
-  // console.log(auth);
+  const auth = useSelector((state) => state);
+  // console.log(jwt_decode(auth));
 
   return (
     <Router>
